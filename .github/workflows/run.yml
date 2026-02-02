@@ -1,0 +1,30 @@
+name: Compile and Run C++
+
+on:
+  workflow_dispatch:
+    inputs:
+      dropbox_folder:
+        description: 'Dropbox folder path'
+        required: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Recreate Configuration.h
+      run: |
+        cat << 'EOF' > Configuration.h
+        ${{ secrets.CONFIGURATION_H }}
+        EOF
+
+    - name: Compile
+      run: |
+        g++ -std=c++17 main.cpp -lcurl -o uploader
+
+    - name: Run
+      run: |
+        ./uploader "${{ github.event.inputs.dropbox_folder }}"
