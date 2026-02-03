@@ -20,13 +20,18 @@ jobs:
         cat << 'EOF' > Configuration.h
         ${{ secrets.CONFIGURATION_H }}
         EOF
+        
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libcurl4-openssl-dev
 
     - name: show repo contents
       run: |
         pwd 
         ls -la
+        
     
-
     - name: Compile
       run: |
         g++ -std=c++20 main.cpp -lcurl -o uploader
