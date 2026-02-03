@@ -24,7 +24,7 @@ jobs:
     - name: show repo contents
       run: |
         pwd 
-        1s -1a
+        ls -la
     
 
     - name: Compile
