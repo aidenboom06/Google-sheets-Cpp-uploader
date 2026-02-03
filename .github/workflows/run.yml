@@ -23,7 +23,7 @@ jobs:
 
     - name: Compile
       run: |
-        g++ -std=c++17 main.cpp -lcurl -o uploader
+        g++ -std=c++20 "Convert Images to Dropbox Sheets test.cpp" -lcurl -o uploader
 
     - name: Run
       run: |
