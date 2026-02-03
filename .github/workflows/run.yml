@@ -21,6 +21,12 @@ jobs:
         ${{ secrets.CONFIGURATION_H }}
         EOF
 
+    - name: show repo contents
+      run: |
+        pwd 
+        1s -1a
+    
+
     - name: Compile
       run: |
         g++ -std=c++20 main.cpp -lcurl -o uploader
